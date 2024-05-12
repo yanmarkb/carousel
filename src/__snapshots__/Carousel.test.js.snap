@@ -11,10 +11,6 @@ exports[`matches snapshot 1`] = `
     <div
       class="Carousel-main"
     >
-      <i
-        aria-label="Go back"
-        class="bi bi-arrow-left-circle"
-      />
       <div
         class="Card"
       >

@@ -70,3 +70,26 @@ test("left arrow moves to the previous image", () => {
 	// Check that the first image is displayed
 	expect(getByAltText("Image 1")).toBeInTheDocument();
 });
+
+test("left arrow is missing on the first image and right arrow is missing on the last image", () => {
+	const photos = [
+		{ src: "https://example.com/image1.jpg", caption: "Image 1" },
+		{ src: "https://example.com/image2.jpg", caption: "Image 2" },
+	];
+	const title = "Test Carousel";
+	const { getByLabelText, queryByLabelText, rerender } = render(
+		<Carousel photos={photos} title={title} />
+	);
+
+	// Check that the left arrow is not in the document
+	expect(queryByLabelText("Go back")).not.toBeInTheDocument();
+
+	// Move to the second image
+	fireEvent.click(getByLabelText("Go forward"));
+
+	// Re-render the component to get the updated state
+	rerender(<Carousel photos={photos} title={title} />);
+
+	// Check that the right arrow is not in the document
+	expect(queryByLabelText("Go forward")).not.toBeInTheDocument();
+});
