@@ -12,6 +12,7 @@ exports[`matches snapshot 1`] = `
       class="Carousel-main"
     >
       <i
+        aria-label="Go back"
         class="bi bi-arrow-left-circle"
       />
       <div
@@ -34,6 +35,7 @@ exports[`matches snapshot 1`] = `
         </small>
       </div>
       <i
+        aria-label="Go forward"
         class="bi bi-arrow-right-circle"
       />
     </div>

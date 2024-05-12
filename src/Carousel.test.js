@@ -47,3 +47,26 @@ test("matches snapshot", () => {
 	const { asFragment } = render(<Carousel photos={photos} title={title} />);
 	expect(asFragment()).toMatchSnapshot();
 });
+
+test("left arrow moves to the previous image", () => {
+	const photos = [
+		{ src: "https://example.com/image1.jpg", caption: "Image 1" },
+		{ src: "https://example.com/image2.jpg", caption: "Image 2" },
+	];
+	const title = "Test Carousel";
+	const { getByLabelText, rerender, getByAltText } = render(
+		<Carousel photos={photos} title={title} />
+	);
+
+	// Move to the second image
+	fireEvent.click(getByLabelText("Go forward"));
+
+	// Click the left arrow
+	fireEvent.click(getByLabelText("Go back"));
+
+	// Re-render the component to get the updated state
+	rerender(<Carousel photos={photos} title={title} />);
+
+	// Check that the first image is displayed
+	expect(getByAltText("Image 1")).toBeInTheDocument();
+});
